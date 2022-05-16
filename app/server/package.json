@@ -16,6 +16,7 @@
   "author": "Nicolas Chambrier",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "lodash": "^4.17.21"
   },
