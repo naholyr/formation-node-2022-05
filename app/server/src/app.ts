@@ -1,8 +1,16 @@
 import express from "express";
 import { fibo } from "./fibo";
 import type { Handler } from "express";
+import cors from "cors";
 
 export const app = express();
+
+app.use(
+  cors({
+    origin: (origin, callback) => callback(null, origin ? [origin] : true),
+    credentials: true,
+  })
+);
 
 const log: Handler = (req, res, next) => {
   // eslint-disable-next-line no-console
