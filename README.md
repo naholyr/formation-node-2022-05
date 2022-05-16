@@ -16,3 +16,10 @@ Contact : nicolas@chambrier.fr
 ### Le TP
 
 À définir ensemble
+
+#### Commandes npm de l'application
+
+- Commandes standard : voir slides
+- Démarrer en mode "watch" : `npm run dev`
+- Build de production : `npm run build`
+- Tests : `npm test`
