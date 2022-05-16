@@ -8,9 +8,10 @@
     "hello": "echo hello",
     "build": "tsc",
     "clean": "rimraf dist",
-    "tsc-watch": "tsc --watch",
-    "nodemon": "nodemon dist/index.js",
-    "dev": "npm-run-all -l -p tsc-watch nodemon"
+    "dev:ts": "tsc --watch --preserveWatchOutput",
+    "dev:app": "nodemon dist/index.js",
+    "dev:test": "jest --watch",
+    "dev": "npm-run-all -l -p dev:*"
   },
   "author": "Nicolas Chambrier",
   "license": "ISC",
