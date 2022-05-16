@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Nav } from "./Nav";
+import { Route, Routes } from "react-router-dom";
+import { PostsPage } from "./PostsPage";
+import { NewPostPage } from "./NewPostPage";
+import { FiboPage } from "./FiboPage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <Nav />
+    <hr />
+    <Routes>
+      <Route path="/" element={<PostsPage />} />
+      <Route path="/new" element={<NewPostPage />} />
+      <Route path="/fibo" element={<FiboPage />} />
+    </Routes>
+  </div>
+);
 
 export default App;
