@@ -1,0 +1,16 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "nothing to see here",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "hello": "echo hello"
+  },
+  "author": "Nicolas Chambrier",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {}
+}

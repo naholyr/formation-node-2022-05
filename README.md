@@ -9,6 +9,10 @@ Contact : nicolas@chambrier.fr
 - Les quelques exemples isolés dans le dossier "samples"
 - Le gros TP dans le dossier "app"
 
+### Liens utiles
+
+- https://kentcdodds.com/blog/write-tests
+
 ### Le TP
 
 À définir ensemble
