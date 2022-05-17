@@ -24,3 +24,8 @@ Contact : nicolas@chambrier.fr
 - Démarrer en mode "watch" : `npm run dev`
 - Build de production : `npm run build`
 - Tests : `npm test`
+
+#### Serveurs
+
+- Redis: `docker run --name redis-formation -d -p 6379:6379 redis`
+- Mongo: `docker run --name mongo-formation -d -p 27017:27017 mongo`
