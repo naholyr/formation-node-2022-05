@@ -1,8 +1,11 @@
 import { MongoClient } from "mongodb";
 
-const connect = () => {
-  const uri = process.env.MONGODB_URI ?? "mongodb://localhost:27017/test";
-  return new MongoClient(uri);
-};
+const uri = process.env.MONGODB_URI ?? "mongodb://localhost:27017/test";
 
-export const mongoClient = connect();
+// Connect at startup: "we recommend calling MongoClient.connect once and reusing the database variable"
+// See http://mongodb.github.io/node-mongodb-native/driver-articles/mongoclient.html#mongoclient-connection-pooling
+export const mongoClient = new MongoClient(uri).connect();
+
+export const mongoCollection = async <T>(name: string) => {
+  return (await mongoClient).db().collection<T>(name);
+};

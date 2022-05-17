@@ -1,4 +1,4 @@
-import { mongoClient } from "./mongo-client";
+import { mongoCollection } from "./mongo-client";
 import type { WithId } from "mongodb";
 
 // Base common Post data
@@ -22,25 +22,34 @@ type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 export type NewPostData = Optional<PostData, "date">;
 
 // Convert a MongoPost with ObjectId from DB to an ExposedPost with string id
-const mongoPostToPost = (mongoPost: WithId<MongoPost>): ExposedPost => {
-  return {
-    id: mongoPost._id.toString(),
-    ...mongoPost,
-  };
+const mongoPostToExposedPost = (mongoPost: WithId<MongoPost>): ExposedPost => {
+  /** Destructuring assignment * /
+  const { a, b } = object
+  → const a = object.a
+  → const b = object.b
+  const { c: toto } = object
+  → const toto = object.c
+  const { d, ...rest } = object
+  → const d = object.d
+  → const rest = _.omit(object, ['d']) // using lodash
+  → const rest = { a: object.a, b: object.b, c: object.d } // without d: object.d
+  /** */
+  const { _id, ...post } = mongoPost;
+  return { id: _id.toString(), ...post };
 };
 
 // Insert a new post into the DB and returned the publicly exposable post
 export const addPost = async (
   data: NewPostData
 ): Promise<ExposedPost | null> => {
-  const collection = mongoClient.db().collection<MongoPost>("posts");
+  const collection = await mongoCollection<MongoPost>("posts");
   const post = {
     ...data,
     date: data.date ?? new Date(),
   };
   const result = await collection.insertOne(post);
   return result.insertedId
-    ? mongoPostToPost({ ...post, _id: result.insertedId })
+    ? mongoPostToExposedPost({ ...post, _id: result.insertedId })
     : null;
 };
 
@@ -48,10 +57,12 @@ export const addPost = async (
 export const getRecentPosts = async (
   minDate: Date = sixMonthsAgo()
 ): Promise<ExposedPost[]> => {
-  const collection = mongoClient.db().collection<MongoPost>("posts");
-  const postsCursor = collection.find({ date: { $gte: minDate } });
+  const collection = await mongoCollection<MongoPost>("posts");
+  const postsCursor = collection
+    .find({ date: { $gte: minDate } })
+    .sort({ date: -1 });
   const posts = await postsCursor.toArray();
-  return posts.map(mongoPostToPost);
+  return posts.map(mongoPostToExposedPost);
 };
 
 // Date - 6 months
