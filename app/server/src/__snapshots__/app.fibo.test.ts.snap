@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App / Fibo GET /fibo/xxx should not change output 1`] = `
+Object {
+  "input": 50,
+  "result": 42,
+}
+`;

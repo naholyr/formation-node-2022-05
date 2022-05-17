@@ -28,5 +28,6 @@ app.get("/hello", (req, res) => {
 
 // Route parameters
 app.get("/fibo/:nb([0-9]+)", (req, res) => {
-  res.send({ result: fibo(Number(req.params.nb)) });
+  const input = Number(req.params.nb);
+  res.send({ input, result: fibo(input) });
 });

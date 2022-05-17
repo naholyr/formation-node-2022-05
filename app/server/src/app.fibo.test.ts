@@ -19,6 +19,14 @@ describe("App / Fibo", () => {
     mock(fibo).mockReturnValue(42);
     const response = await request(app).get("/fibo/50");
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ result: 42 });
+    expect(response.body).toMatchObject({ result: 42 });
+    expect(response.body).toEqual(expect.objectContaining({ result: 42 }));
+    expect(response.body).toEqual({ input: 50, result: 42 });
+  });
+  it("GET /fibo/xxx should not change output", async () => {
+    mock(fibo).mockReturnValue(42);
+    const response = await request(app).get("/fibo/50");
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchSnapshot();
   });
 });
