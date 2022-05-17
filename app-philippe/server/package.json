@@ -10,21 +10,28 @@
     "prestart": "npm run build",
     "start": "node dist/index.js",
     "clean": "rimraf dist",
-    "tsc-watch": "tsc --watch",
+    "tsc-watch": "tsc --watch --preserveWatchOutput",
     "nodemon": "nodemon dist/index.js",
     "dev": "npm-run-all -l -p tsc-watch nodemon"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/cors": "^2.8.12",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "mongodb": "^4.6.0",
+    "zod": "^3.16.0",
+    "zod-express-middleware": "^1.4.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/jest": "^27.5.1",
     "@types/lodash": "^4.14.182",
+    "@types/node": "^17.0.34",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",

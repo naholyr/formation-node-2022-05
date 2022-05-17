@@ -1,6 +1,7 @@
 import request from "supertest";
 import { app } from "./app";
 import { fibo } from "./fibo";
+
 jest.mock("./fibo");
 
 describe("App / Fibo", () => {
