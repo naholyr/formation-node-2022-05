@@ -13,6 +13,7 @@ Contact : nicolas@chambrier.fr
 
 - https://kentcdodds.com/blog/write-tests
 - https://12factor.net/fr/
+- https://reflectoring.io/complete-guide-to-cors/
 
 ### Le TP
 
