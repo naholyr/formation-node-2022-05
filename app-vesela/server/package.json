@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "app-server",
   "version": "1.0.0",
   "description": "nothing to see here",
   "main": "dist/index.js",
@@ -7,21 +7,22 @@
     "test": "jest",
     "hello": "echo hello",
     "build": "tsc",
-    "prestart": "npm run build",
-    "start": "node dist/index.js",
     "clean": "rimraf dist",
-    "tsc-watch": "tsc --watch",
-    "nodemon": "nodemon dist/index.js",
-    "dev": "npm-run-all -l -p tsc-watch nodemon"
+    "dev:ts": "tsc --watch --preserveWatchOutput",
+    "dev:app": "nodemon dist/index.js",
+    "dev:test": "jest --watch",
+    "dev": "npm-run-all -l -p dev:*"
   },
-  "author": "",
+  "author": "Nicolas Chambrier",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "lodash-es": "^4.17.21"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.5.1",
     "@types/lodash": "^4.14.182",
@@ -33,9 +34,9 @@
     "nodemon": "^2.0.16",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
     "supertest": "^6.2.3",
     "ts-jest": "^28.0.2",
-    "ts-node": "^10.7.0",
     "typescript": "^4.6.4"
   }
 }

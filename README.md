@@ -12,6 +12,7 @@ Contact : nicolas@chambrier.fr
 ### Liens utiles
 
 - https://kentcdodds.com/blog/write-tests
+- https://12factor.net/fr/
 
 ### Le TP
 

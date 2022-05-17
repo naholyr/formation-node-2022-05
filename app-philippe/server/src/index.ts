@@ -1,5 +1,5 @@
 import { app } from "./app";
 
-app.listen(3002, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server ready ");
 });
