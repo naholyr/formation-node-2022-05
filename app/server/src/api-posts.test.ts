@@ -36,7 +36,7 @@ describe("API / Posts", () => {
       date,
     });
     expect(result?.id).toBeDefined();
-    expect(result?.date).toEqual(date);
+    expect(result?.date).toEqual(date.toISOString());
   });
 
   it("should list no post", async () => {

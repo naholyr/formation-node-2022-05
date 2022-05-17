@@ -10,7 +10,7 @@ export const PostsList = ({ posts }: Props) => (
       <li key={post.id}>
         <h2>{post.title}</h2>
         <p>
-          <strong>{post.author}</strong> - <em>{post.date}</em>
+          <strong>{post.author.name}</strong> - <em>{post.date}</em>
         </p>
         <p>{post.body}</p>
       </li>

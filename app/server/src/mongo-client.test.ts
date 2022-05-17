@@ -4,7 +4,7 @@ describe("Mongo client", () => {
   it("should define MONGODB_URI", () => {
     expect(process.env.MONGODB_URI).toBeDefined();
   });
-  it("should connect to test DB", () => {
-    expect(mongoClient.db().namespace).toEqual("test");
+  it("should connect to test DB", async () => {
+    expect((await mongoClient).db().namespace).toEqual("test");
   });
 });

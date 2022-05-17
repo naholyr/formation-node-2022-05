@@ -10,7 +10,7 @@ type PostData = {
 };
 
 // Exposed by public API to clients
-export type ExposedPost = PostData & { id: string };
+export type ExposedPost = Omit<PostData, "date"> & { id: string; date: string };
 
 // Stored internally
 export type MongoPost = PostData;
@@ -34,8 +34,8 @@ const mongoPostToExposedPost = (mongoPost: WithId<MongoPost>): ExposedPost => {
   → const rest = _.omit(object, ['d']) // using lodash
   → const rest = { a: object.a, b: object.b, c: object.d } // without d: object.d
   /** */
-  const { _id, ...post } = mongoPost;
-  return { id: _id.toString(), ...post };
+  const { _id, date, ...post } = mongoPost;
+  return { id: _id.toString(), date: date.toISOString(), ...post };
 };
 
 // Insert a new post into the DB and returned the publicly exposable post
