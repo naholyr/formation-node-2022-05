@@ -2,6 +2,7 @@ import express from "express";
 import { fibo } from "./fibo";
 import type { Handler } from "express";
 import cors from "cors";
+import { postsRouter } from "./routes/posts";
 
 export const app = express();
 
@@ -31,3 +32,6 @@ app.get("/fibo/:nb([0-9]+)", (req, res) => {
   const input = Number(req.params.nb);
   res.send({ input, result: fibo(input) });
 });
+
+// Posts REST API
+app.use("/posts", postsRouter);
