@@ -3,6 +3,7 @@ import { fibo } from "./fibo";
 import type { Handler } from "express";
 import cors from "cors";
 import { postsRouter } from "./routes/posts";
+import bodyParser from "body-parser";
 
 export const app = express();
 
@@ -12,6 +13,11 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(bodyParser.json()); // application/json
+// bodyParser.text() → text/plain
+// bodyParser.raw() → application/octet-stream
+// bodyParser.urlencoded() → application/x-www-form-urlencoded
 
 const log: Handler = (req, res, next) => {
   // eslint-disable-next-line no-console

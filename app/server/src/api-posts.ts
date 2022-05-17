@@ -1,5 +1,6 @@
 import { mongoCollection } from "./mongo-client";
 import type { WithId } from "mongodb";
+import { z } from "zod";
 
 // Base common Post data
 type PostData = {
@@ -15,11 +16,20 @@ export type ExposedPost = Omit<PostData, "date"> & { id: string; date: string };
 // Stored internally
 export type MongoPost = PostData;
 
-// Utility type to list some properties as optional
-type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+// Validation schema for NewPostData
+export const NewPostDataSchema = z
+  .object({
+    title: z.string(),
+    body: z.string(),
+    author: z.object({
+      name: z.string(),
+    }),
+    date: z.date().optional(),
+  })
+  .strict();
 
 // Minimum required to create a new post
-export type NewPostData = Optional<PostData, "date">;
+export type NewPostData = z.infer<typeof NewPostDataSchema>;
 
 // Convert a MongoPost with ObjectId from DB to an ExposedPost with string id
 const mongoPostToExposedPost = (mongoPost: WithId<MongoPost>): ExposedPost => {
