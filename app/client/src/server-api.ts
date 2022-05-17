@@ -6,10 +6,10 @@ export const fibo = async (n: number) => {
 };
 
 export type Post = {
-  id: number;
+  id: string;
   title: string;
   body: string;
-  author: string;
+  author: { name: string };
   date: string;
 };
 
@@ -18,10 +18,10 @@ export type NewPostData = Omit<Post, "id" | "date">;
 export const getPosts = async (): Promise<Post[]> => {
   return [
     {
-      id: 1,
+      id: "1",
       title: "Post 1",
       body: "This is the body of post 1",
-      author: "John Doe",
+      author: { name: "John Doe" },
       date: "2022-01-01 00:00:00",
     },
   ];
@@ -29,7 +29,7 @@ export const getPosts = async (): Promise<Post[]> => {
 
 export const addPost = async (data: NewPostData): Promise<Post> => {
   return {
-    id: 1,
+    id: "1",
     title: data.title,
     body: data.body,
     author: data.author,

@@ -24,7 +24,7 @@ export const NewPostPage = () => {
       try {
         await addPost({
           title: title.current.value,
-          author: author.current.value,
+          author: { name: author.current.value },
           body: body.current.value,
         });
         navigate("/");
