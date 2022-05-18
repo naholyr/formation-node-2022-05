@@ -39,5 +39,10 @@ app.get("/fibo/:nb([0-9]+)", (req, res) => {
   res.send({ input, result: fibo(input) });
 });
 
+// Simulate 500 error
+app.get("/error", () => {
+  throw new Error("Oh no I crashed");
+});
+
 // Posts REST API
 app.use("/posts", postsRouter);
