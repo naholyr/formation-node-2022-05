@@ -14,10 +14,12 @@ Contact : nicolas@chambrier.fr
 - https://kentcdodds.com/blog/write-tests
 - https://12factor.net/fr/
 - https://reflectoring.io/complete-guide-to-cors/
+- Testing socket.io (no mock): https://socket.io/fr/docs/v4/testing/#example-with-jest
+- Mocking socket.io: https://www.npmjs.com/package/socket.io-mock & https://www.npmjs.com/package/mock-socket
 
 ### Le TP
 
-À définir ensemble
+- Messages type forum
 
 #### Commandes npm de l'application
 

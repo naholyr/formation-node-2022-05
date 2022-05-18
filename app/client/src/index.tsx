@@ -4,7 +4,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import "./websocket";
+import { socket } from "./websocket";
+import { WebsocketContext } from "./websocket-context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <WebsocketContext.Provider value={socket}>
+        <App />
+      </WebsocketContext.Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

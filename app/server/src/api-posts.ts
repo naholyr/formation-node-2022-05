@@ -1,6 +1,7 @@
 import { mongoCollection } from "./mongo-client";
 import type { WithId } from "mongodb";
 import { z } from "zod";
+import { bus } from "./bus";
 
 // Base common Post data
 type PostData = {
@@ -58,9 +59,15 @@ export const addPost = async (
     date: data.date ?? new Date(),
   };
   const result = await collection.insertOne(post);
-  return result.insertedId
-    ? mongoPostToExposedPost({ ...post, _id: result.insertedId })
-    : null;
+
+  if (!result.insertedId) return null;
+
+  const exposedPost = mongoPostToExposedPost({
+    ...post,
+    _id: result.insertedId,
+  });
+  bus.emit("new-post", exposedPost);
+  return exposedPost;
 };
 
 // Get all posts from the DB inserted after given date (default 6 months ago)
