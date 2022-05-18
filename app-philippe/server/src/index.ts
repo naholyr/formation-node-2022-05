@@ -1,5 +1,8 @@
 import { app } from "./app";
+import { initWebSocket } from "./web-socket";
 
-app.listen(process.env.PORT, () => {
+const httpServer = app.listen(process.env.PORT, () => {
   console.log("Server ready ");
 });
+
+initWebSocket(httpServer);
