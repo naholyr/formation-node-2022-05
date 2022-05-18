@@ -1,6 +1,7 @@
 {
   "name": "app",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "test:server": "cd server && npm test",
     "test:client": "cd client && npm test",
@@ -12,7 +13,9 @@
     "start": "npm-run-all -l -p start:*",
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm start",
-    "dev": "npm-run-all -l -p dev:*"
+    "dev": "npm-run-all -l -p dev:*",
+    "debugdev:server": "cd server && npm run debugdev",
+    "debugdev": "npm-run-all -l -p dev:client debugdev:server"
   },
   "license": "ISC",
   "dependencies": {

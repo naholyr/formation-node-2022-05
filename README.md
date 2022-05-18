@@ -29,9 +29,10 @@ Contact : nicolas@chambrier.fr
 - Commandes standard : voir slides
 - Démarrer en mode "watch" : `npm run dev`
 - Build de production : `npm run build`
+- Debug + mode "watch" : `npm run debugdev`
 - Tests : `npm test`
 
 #### Serveurs
 
-- Redis: `docker run --name redis-formation -d -p 6379:6379 redis`
 - Mongo: `docker run --name mongo-formation -d -p 27017:27017 mongo`
+- Redis: `docker run --name redis-formation -d -p 6379:6379 redis` (pas requis immédiatement, serait nécessaire pour le stockage des session & adapter socket.io)

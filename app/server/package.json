@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "nothing to see here",
   "main": "dist/index.js",
+  "private": true,
   "scripts": {
     "test": "jest",
     "hello": "echo hello",
@@ -10,8 +11,10 @@
     "clean": "rimraf dist",
     "dev:ts": "tsc --watch --preserveWatchOutput",
     "dev:app": "nodemon dist/index.js",
+    "debugdev:app": "nodemon --exec 'node --inspect' dist/index.js",
     "dev:test": "jest --watch",
-    "dev": "npm-run-all -l -p dev:*"
+    "dev": "npm-run-all -l -p dev:*",
+    "debugdev": "npm-run-all -l -p dev:ts debugdev:app"
   },
   "author": "Nicolas Chambrier",
   "license": "ISC",
@@ -36,6 +39,7 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.15.0",
     "jest": "^28.1.0",
     "nodemon": "^2.0.16",
