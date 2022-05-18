@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <WebSocketContext.Provider>
+      <WebSocketContext.Provider value={socket}>
         <App />
       </WebSocketContext.Provider>
     </BrowserRouter>
