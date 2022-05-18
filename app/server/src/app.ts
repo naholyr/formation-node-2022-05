@@ -1,9 +1,11 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { fibo } from "./fibo";
 import type { Handler } from "express";
 import cors from "cors";
 import { postsRouter } from "./routes/posts";
 import bodyParser from "body-parser";
+import { authRouter } from "./routes/auth";
+import { expressjwt } from "express-jwt";
 
 export const app = express();
 
@@ -18,6 +20,24 @@ app.use(bodyParser.json()); // application/json
 // bodyParser.text() → text/plain
 // bodyParser.raw() → application/octet-stream
 // bodyParser.urlencoded() → application/x-www-form-urlencoded
+
+// Whitelisting: all URLs are protected except login & register
+app.use(
+  expressjwt({
+    secret: process.env.JWT_SECRET ?? "",
+    algorithms: ["HS256"],
+  }).unless({
+    path: ["/auth/login", "/auth/register"],
+  })
+);
+/**
+ * Alternative = blacklisting: protect on demand
+ *
+ * const protected = expressjwt({ … });
+ *
+ * app.get('/unprotected', (req, res) => …)
+ * app.get('/protected', protected, (req, res) => …)
+ */
 
 const log: Handler = (req, res, next) => {
   // eslint-disable-next-line no-console
@@ -45,4 +65,13 @@ app.get("/error", () => {
 });
 
 // Posts REST API
+app.use("/auth", authRouter);
 app.use("/posts", postsRouter);
+
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  if (err.name === "UnauthorizedError") {
+    res.status(401).send({ error: "Invalid token" });
+  } else {
+    next(err);
+  }
+});
