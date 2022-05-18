@@ -16,6 +16,9 @@ Contact : nicolas@chambrier.fr
 - https://reflectoring.io/complete-guide-to-cors/
 - Testing socket.io (no mock): https://socket.io/fr/docs/v4/testing/#example-with-jest
 - Mocking socket.io: https://www.npmjs.com/package/socket.io-mock & https://www.npmjs.com/package/mock-socket
+- https://www.digitalocean.com/community/tutorials/api-authentication-with-json-web-tokensjwt-and-passport
+- https://www.passportjs.org/
+- Hosting Heroku & Mongodb: https://www.mongodb.com/developer/how-to/use-atlas-on-heroku/
 
 ### Le TP
 
