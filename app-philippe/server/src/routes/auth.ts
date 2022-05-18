@@ -9,7 +9,10 @@ export const authRouter = Router()
 
   .post("/login", async (req, res) => {
     const isUserExist = await validateUser(req.body.name, req.body.password);
-    if (!isUserExist) res.status(401).send({ error: "Not exists" });
+    if (!isUserExist) {
+      res.status(401).send({ error: "Not exists" });
+      return;
+    }
     const jwt = createJWT(req.body.name);
     res.send({ token: jwt });
   })

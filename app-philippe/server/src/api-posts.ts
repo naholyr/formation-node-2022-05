@@ -52,9 +52,9 @@ export const addPost = async (
 
   if (!result.insertedId) return null;
 
-  const ret = mongoPostToExposedPost({ ...post, _id: result.insertedId });
+  const ret =  mongoPostToExposedPost({ ...post, _id: result.insertedId })
   bus.emit("new-post", ret);
-  return ret;
+  return ret
 };
 
 // Get all posts from the DB inserted after given date (default 6 months ago)

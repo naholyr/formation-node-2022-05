@@ -35,7 +35,7 @@ const AppUnauthenticated = ({
         e.currentTarget.elements.namedItem("username") as HTMLInputElement
       )?.value;
       const password = (
-        e.currentTarget.elements.namedItem("username") as HTMLInputElement
+        e.currentTarget.elements.namedItem("password") as HTMLInputElement
       )?.value;
       if (username && password) {
         await fn(username, password);

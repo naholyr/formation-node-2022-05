@@ -12,7 +12,12 @@
     "clean": "rimraf dist",
     "tsc-watch": "tsc --watch --preserveWatchOutput",
     "nodemon": "nodemon dist/index.js",
-    "dev": "npm-run-all -l -p tsc-watch nodemon"
+    "dev:ts": "tsc --watch --preserveWatchOutput",
+    "dev:app": "nodemon dist/index.js",
+    "dev:test": "jest --watch",
+    "dev": "npm-run-all -l -p dev:*",
+    "debugdev:app": "cross-env NODE_OPTIONS='--inspect-brk' npm run dev:app",
+    "debugdev": "npm-run-all -l -p dev:ts debugdev:app"
   },
   "author": "",
   "license": "ISC",
@@ -40,6 +45,8 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
+    "cross-env": "^7.0.3",
+    "crossenv": "^0.0.2-security",
     "eslint": "^8.15.0",
     "jest": "^28.1.0",
     "nodemon": "^2.0.16",
